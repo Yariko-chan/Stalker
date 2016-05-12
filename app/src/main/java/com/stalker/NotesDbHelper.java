@@ -72,6 +72,7 @@ public class NotesDbHelper extends SQLiteOpenHelper {
             //execute the query results will be save in Cursor c
             Cursor c = sqlDB.rawQuery(maxQuery, null);
 
+            //test commit
 
             //add value to cursor2
             Cursor2.addRow(new Object[] { "Success" });
