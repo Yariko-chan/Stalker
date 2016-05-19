@@ -19,6 +19,8 @@ public class NotesDbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "notes.db";
     private static final int DB_VERSION = 1;
 
+    public static final String GET_DATA = "SELECT  * FROM " + NoteTable.TABLE_NAME;
+
     public NotesDbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -71,9 +73,6 @@ public class NotesDbHelper extends SQLiteOpenHelper {
             String maxQuery = Query ;
             //execute the query results will be save in Cursor c
             Cursor c = sqlDB.rawQuery(maxQuery, null);
-
-            //test commit
-
             //add value to cursor2
             Cursor2.addRow(new Object[] { "Success" });
 
