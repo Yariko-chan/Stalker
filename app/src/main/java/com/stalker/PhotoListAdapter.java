@@ -28,12 +28,12 @@ public class PhotoListAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView infoTV = (TextView) view.findViewById(R.id.info);
-        TextView changeDateTV = (TextView) view.findViewById(R.id.change_date);
-        TextView locationTV = (TextView) view.findViewById(R.id.location);
-        // Extract properties from cursor
+//        TextView changeDateTV = (TextView) view.findViewById(R.id.change_date);
+//        TextView locationTV = (TextView) view.findViewById(R.id.location);
+//        // Extract properties from cursor
         String info = cursor.getString(cursor.getColumnIndexOrThrow(NoteTable.COLUMN_NAME_INFO));
-        long changeDate = cursor.getLong(cursor.getColumnIndexOrThrow(NoteTable.COLUMN_NAME_CHANGE_TIMESTAMP));
-        int location = cursor.getInt(cursor.getColumnIndexOrThrow(NoteTable.COLUMN_NAME_LATITUDE));
+//        long changeDate = cursor.getLong(cursor.getColumnIndexOrThrow(NoteTable.COLUMN_NAME_CHANGE_TIMESTAMP));
+//        int location = cursor.getInt(cursor.getColumnIndexOrThrow(NoteTable.COLUMN_NAME_LATITUDE));
         // Populate fields with extracted properties
         infoTV.setText(info);
     }

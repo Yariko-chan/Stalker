@@ -58,10 +58,18 @@ public class PhotoListActivity  extends AppCompatActivity {
             }
         });
 
+        String[] columns = {
+                NoteTable._ID,
+                NoteTable.COLUMN_NAME_PHOTO_URL,
+                NoteTable.COLUMN_NAME_INFO,
+                NoteTable.COLUMN_NAME_CREATE_TIMESTAMP,
+                NoteTable.COLUMN_NAME_CHANGE_TIMESTAMP,
+                NoteTable.COLUMN_NAME_LATITUDE,
+                NoteTable.COLUMN_NAME_LONGITUDE,};
         NotesDbHelper handler = new NotesDbHelper(this);
         SQLiteDatabase db = handler.getWritableDatabase();
-        Cursor cursor = db.rawQuery(NotesDbHelper.GET_DATA, null);
-        db.close();
+        Cursor cursor = db.query(NoteTable.TABLE_NAME, columns, null, null, null, null, null);
+        //db.close();
 
         PhotoListAdapter adapter = new PhotoListAdapter(this, cursor, 0);
         photoList.setAdapter(adapter);

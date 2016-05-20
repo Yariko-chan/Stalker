@@ -1,4 +1,4 @@
-package com.stalker;
+package com.stalker.utils;
 
 //all required import files
 import java.util.ArrayList;
@@ -29,6 +29,8 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.stalker.NotesDbHelper;
 
 public class AndroidDatabaseManager extends Activity implements OnItemClickListener {
 
