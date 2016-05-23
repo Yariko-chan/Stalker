@@ -30,7 +30,7 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.stalker.NotesDbHelper;
+import com.stalker.db.NotesDBHelper;
 
 public class AndroidDatabaseManager extends Activity implements OnItemClickListener {
 
@@ -54,7 +54,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
 	
 	//in the below line Change the text 'yourCustomSqlHelper' with your custom sqlitehelper class name.
 	//Do not change the variable name dbm
-	NotesDbHelper dbm;
+	NotesDBHelper dbm;
 	TableLayout tableLayout;
 	TableRow.LayoutParams tableRowParams;
 	HorizontalScrollView hsv;
@@ -73,7 +73,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
 		
 
 		//in the below line Change the text 'yourCustomSqlHelper' with your custom sqlitehelper class name
-		dbm = new NotesDbHelper(AndroidDatabaseManager.this);
+		dbm = NotesDBHelper.getInstance(AndroidDatabaseManager.this);
 		
 		mainscrollview = new ScrollView(AndroidDatabaseManager.this);
 		

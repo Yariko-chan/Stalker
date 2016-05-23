@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import com.stalker.NotesContract.*;
-import com.stalker.R;
+import com.stalker.db.NotesContract.*;
 
 /**
  * Created by Diana on 19.05.2016 at 19:27.

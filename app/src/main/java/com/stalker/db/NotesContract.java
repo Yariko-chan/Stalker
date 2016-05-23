@@ -1,4 +1,4 @@
-package com.stalker;
+package com.stalker.db;
 
 import android.provider.BaseColumns;
 

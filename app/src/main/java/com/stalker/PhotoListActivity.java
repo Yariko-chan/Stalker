@@ -12,9 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.stalker.db.NotesDBHelper;
 import com.stalker.utils.AndroidDatabaseManager;
 
-import static com.stalker.NotesContract.NoteTable;
+import static com.stalker.db.NotesContract.NoteTable;
 
 public class PhotoListActivity  extends AppCompatActivity {
     Button addButton;
@@ -31,7 +32,7 @@ public class PhotoListActivity  extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NotesDbHelper dbHelper = new NotesDbHelper(getBaseContext());
+                NotesDBHelper dbHelper = NotesDBHelper.getInstance(getApplicationContext());
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
@@ -42,8 +43,7 @@ public class PhotoListActivity  extends AppCompatActivity {
                 values.put(NoteTable.COLUMN_NAME_LATITUDE, 44.418088);
                 values.put(NoteTable.COLUMN_NAME_LONGITUDE, 26.103516);
 
-                long newRowId;
-                newRowId = db.insert(
+                long newRowId = db.insert(
                         NoteTable.TABLE_NAME,
                         NoteTable.COLUMN_NAME_PHOTO_URL,
                         values);
@@ -66,10 +66,9 @@ public class PhotoListActivity  extends AppCompatActivity {
                 NoteTable.COLUMN_NAME_CHANGE_TIMESTAMP,
                 NoteTable.COLUMN_NAME_LATITUDE,
                 NoteTable.COLUMN_NAME_LONGITUDE,};
-        NotesDbHelper handler = new NotesDbHelper(this);
-        SQLiteDatabase db = handler.getWritableDatabase();
+        NotesDBHelper handler = NotesDBHelper.getInstance(getApplicationContext());
+        SQLiteDatabase db = handler.getReadableDatabase();
         Cursor cursor = db.query(NoteTable.TABLE_NAME, columns, null, null, null, null, null);
-        //db.close();
 
         PhotoListAdapter adapter = new PhotoListAdapter(this, cursor, 0);
         photoList.setAdapter(adapter);
@@ -85,5 +84,11 @@ public class PhotoListActivity  extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        NotesDBHelper.getInstance(getApplicationContext()).close();
+        super.onDestroy();
     }
 }

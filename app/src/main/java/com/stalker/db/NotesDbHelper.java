@@ -1,4 +1,4 @@
-package com.stalker;
+package com.stalker.db;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -10,18 +10,27 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import static com.stalker.NotesContract.*;
+import static com.stalker.db.NotesContract.*;
 
 /**
  * Created by Diana on 26.04.2016.
  */
-public class NotesDbHelper extends SQLiteOpenHelper {
+public class NotesDBHelper extends SQLiteOpenHelper {
+    private static NotesDBHelper sInstance;
+
     private static final String DB_NAME = "notes.db";
     private static final int DB_VERSION = 1;
 
     public static final String GET_DATA = "SELECT  * FROM " + NoteTable.TABLE_NAME;
 
-    public NotesDbHelper(Context context) {
+    public static synchronized NotesDBHelper getInstance(Context context) {
+        if (sInstance == null) {
+            sInstance = new NotesDBHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+
+    private NotesDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
