@@ -24,5 +24,6 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/addText"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:hint="Enter text..."/>
 </LinearLayout>
