@@ -10,35 +10,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.stalker.NewNoteActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <include layout="@layout/dialog_new_note"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/photos"
-            android:visibility="gone"
-            android:layout_margin="10dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/addPhoto"
-            android:layout_gravity="center_horizontal"
-            android:src="@android:drawable/ic_menu_camera"
-            android:layout_margin="10dp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            android:id="@+id/addText"
-            android:layout_margin="10dp"
-            android:hint="Enter text..."/>
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -57,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/add"
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_add_note"
             android:layout_weight="1"
             android:background="#00ffffff" />
     </LinearLayout>

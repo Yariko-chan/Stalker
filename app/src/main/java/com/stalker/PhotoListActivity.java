@@ -1,6 +1,5 @@
 package com.stalker;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,11 +23,21 @@ public class PhotoListActivity  extends AppCompatActivity {
     Button dbButton;
     private ListView photoList;
 
+
+    String[] columns = {
+            NoteTable._ID,
+            NoteTable.COLUMN_NAME_PHOTO_URL,
+            NoteTable.COLUMN_NAME_INFO,
+            NoteTable.COLUMN_NAME_CREATE_TIMESTAMP,
+            NoteTable.COLUMN_NAME_CHANGE_TIMESTAMP,
+            NoteTable.COLUMN_NAME_LATITUDE,
+            NoteTable.COLUMN_NAME_LONGITUDE,};
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_list);
-        initializeControls();
+        initControls();
     }
 
     @Override
@@ -49,7 +58,7 @@ public class PhotoListActivity  extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void initializeControls() {
+    private void initControls() {
         addButton = (Button) findViewById(R.id.add_button);
         dbButton = (Button) findViewById(R.id.db_button);
         photoList = (ListView) findViewById(R.id.listView);
@@ -67,27 +76,14 @@ public class PhotoListActivity  extends AppCompatActivity {
                 startActivity(dbManager);
             }
         });
+        initPhotoListAdapter();
+    }
 
-        String[] columns = {
-                NoteTable._ID,
-                NoteTable.COLUMN_NAME_PHOTO_URL,
-                NoteTable.COLUMN_NAME_INFO,
-                NoteTable.COLUMN_NAME_CREATE_TIMESTAMP,
-                NoteTable.COLUMN_NAME_CHANGE_TIMESTAMP,
-                NoteTable.COLUMN_NAME_LATITUDE,
-                NoteTable.COLUMN_NAME_LONGITUDE,};
+    private void initPhotoListAdapter() {
         NotesDBHelper handler = NotesDBHelper.getInstance(getApplicationContext());
         SQLiteDatabase db = handler.getReadableDatabase();
         Cursor cursor = db.query(NoteTable.TABLE_NAME, columns, null, null, null, null, null);
-
         PhotoListAdapter adapter = new PhotoListAdapter(this, cursor, 0);
         photoList.setAdapter(adapter);
     }
-
-    View.OnClickListener createNote = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            //Dialog
-        }
-    };
 }

@@ -93,4 +93,5 @@
     </string>
     <string name="add">ADD</string>
     <string name="cancel">CANCEL</string>
+    <string name="error_file_creating">Error while creating file. Please, send bugreport.</string>
 </resources>
