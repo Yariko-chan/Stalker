@@ -3,12 +3,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <HorizontalScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/photos"
-        android:visibility="gone"
-        android:layout_margin="10dp" />
+        android:layout_weight="1"
+        android:gravity="center_vertical|center_horizontal">
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/current_photo"
+        android:visibility="visible" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -16,7 +24,8 @@
         android:id="@+id/btn_add_photo"
         android:layout_gravity="center_horizontal"
         android:src="@android:drawable/ic_menu_camera"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:visibility="visible" />
 
     <EditText
         android:layout_width="match_parent"
@@ -25,5 +34,6 @@
         android:ems="10"
         android:id="@+id/add_text"
         android:layout_margin="10dp"
-        android:hint="Enter text..."/>
+        android:hint="Enter text..."
+        android:layout_weight="2" />
 </LinearLayout>
